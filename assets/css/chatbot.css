@@ -1,0 +1,291 @@
+/* Additional Chatbot Styles for Bowery Creative Agency Website */
+
+/* Chat Interface Styles */
+.chat-interface {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 3rem auto 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-interface:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.chat-header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-toggle {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0.3rem;
+}
+
+.toggle-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background: none;
+    color: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.toggle-btn.active {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+.chat-messages {
+    padding: 1.5rem;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.message {
+    margin-bottom: 1rem;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.user {
+    margin-left: auto;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 18px 18px 0 18px;
+    padding: 0.8rem 1rem;
+}
+
+.message.bot {
+    background-color: var(--neutral);
+    border-radius: 18px 18px 18px 0;
+    padding: 0.8rem 1rem;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    float: left;
+    margin: 0 1px;
+    background-color: #9E9EA1;
+    display: block;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.typing-indicator span:nth-of-type(1) {
+    animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-of-type(2) {
+    animation: typing 1s 0.33s infinite;
+}
+
+.typing-indicator span:nth-of-type(3) {
+    animation: typing 1s 0.66s infinite;
+}
+
+@keyframes typing {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.chat-input {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    background-color: white;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.chat-input input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+}
+
+.chat-input button {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chat-input button:hover {
+    background-color: #152b68;
+    transform: translateY(-2px);
+}
+
+/* Mode Indicator */
+.mode-indicator {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mode-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Chat Suggestions */
+.chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.suggestion-chip {
+    background-color: rgba(30, 58, 138, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.suggestion-chip:hover {
+    background-color: rgba(30, 58, 138, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Patient/Clinical Content Styles */
+.patient-response, .clinical-response {
+    transition: opacity 0.3s ease;
+}
+
+/* Chat Avatar */
+.chat-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.message-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.message-container.user {
+    flex-direction: row-reverse;
+}
+
+.message-container.user .chat-avatar {
+    margin-right: 0;
+    margin-left: 10px;
+    background-color: var(--accent);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .chat-interface {
+        margin: 2rem 1rem;
+    }
+    
+    .chat-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+/* Chat Features Showcase */
+.chat-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(30, 58, 138, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.feature-card h4 {
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: #666;
+    font-size: 0.9rem;
+}

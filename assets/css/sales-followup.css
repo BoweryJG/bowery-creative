@@ -1,0 +1,616 @@
+.sales-dashboard {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sales-dashboard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-tabs {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0.3rem;
+}
+
+.dashboard-tab {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background: none;
+    color: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dashboard-tab.active {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+.dashboard-content {
+    padding: 1.5rem;
+}
+
+.campaign-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.campaign-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campaign-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-active {
+    background-color: #10B981;
+}
+
+.status-paused {
+    background-color: #F59E0B;
+}
+
+.status-completed {
+    background-color: #6B7280;
+}
+
+.campaign-body {
+    padding: 1rem;
+}
+
+.campaign-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.campaign-progress {
+    margin-bottom: 1rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+.campaign-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.campaign-details {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.details-tabs {
+    display: flex;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 0.3rem;
+}
+
+.details-tab {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background: none;
+    color: #333;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.details-tab.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.details-content {
+    display: none;
+}
+
+.details-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.engagement-chart {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    height: 300px;
+    position: relative;
+}
+
+.chart-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 1.5rem;
+}
+
+.message-sequence {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.sequence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sequence-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.sequence-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 100%;
+    width: 2px;
+    background-color: #eee;
+}
+
+.sequence-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.sequence-item:last-child {
+    margin-bottom: 0;
+}
+
+.sequence-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -30px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    z-index: 1;
+}
+
+.sequence-item.sent::before {
+    background-color: #10B981;
+}
+
+.sequence-item.scheduled::before {
+    background-color: #F59E0B;
+}
+
+.sequence-item.pending::before {
+    background-color: #6B7280;
+}
+
+.sequence-date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.sequence-message {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.sequence-message h5 {
+    margin-bottom: 0.5rem;
+}
+
+.sequence-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.audience-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.audience-header {
+    margin-bottom: 1.5rem;
+}
+
+.audience-segments {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.segment-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.segment-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.segment-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.personalization-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.personalization-header {
+    margin-bottom: 1.5rem;
+}
+
+.personalization-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.example-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.example-header {
+    background-color: rgba(30, 58, 138, 0.1);
+    padding: 1rem;
+}
+
+.example-body {
+    padding: 1rem;
+}
+
+.example-body p {
+    margin-bottom: 0.5rem;
+}
+
+.example-body .highlight {
+    background-color: rgba(30, 58, 138, 0.1);
+    padding: 0 0.25rem;
+    border-radius: 4px;
+}
+
+.create-campaign {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--primary);
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 100;
+}
+
+.create-campaign:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.ai-suggestions {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-suggestions h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.ai-suggestions h5 i {
+    color: var(--primary);
+}
+
+.suggestion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.suggestion-item {
+    background-color: white;
+    border-radius: 4px;
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.suggestion-item:hover {
+    background-color: rgba(30, 58, 138, 0.05);
+}
+
+.dashboard-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 300px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.dashboard-notification.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(30, 58, 138, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+.notification-text {
+    flex: 1;
+}
+
+.notification-text h5 {
+    margin-bottom: 0.25rem;
+}
+
+.notification-text p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .campaign-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .personalization-examples {
+        grid-template-columns: 1fr;
+    }
+    
+    .details-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .create-campaign {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
