@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The New Smile Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-[#0C3B2E] font-sans">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center p-6 shadow-md bg-white">
+    <div class="text-2xl font-bold text-[#00666D]">The New Smile Guide</div>
+    <nav class="space-x-6 text-sm text-gray-600">
+      <a href="#" class="hover:text-[#00666D]">Home</a>
+      <a href="#" class="hover:text-[#00666D]">Courses</a>
+      <a href="#" class="hover:text-[#00666D]">Cost Info</a>
+      <a href="#" class="hover:text-[#00666D]">Find a Doctor</a>
+      <a href="#" class="hover:text-[#00666D]">Resources</a>
+    </nav>
+    <a href="#" class="bg-[#84DCC6] text-white px-4 py-2 rounded-full hover:bg-[#329F5B] transition">Get Started</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 px-6 bg-[#EEF7F9]">
+    <h1 class="text-4xl font-bold mb-4">Discover the Power of Dental Implants</h1>
+    <p class="text-gray-600 max-w-xl mx-auto mb-6">Everything you need to know — from cost to confidence. Simple, expert-backed guidance for your new smile.</p>
+    <a href="#" class="inline-block bg-[#00666D] text-white px-6 py-3 rounded-full hover:bg-[#0C8346] transition">Start Learning</a>
+  </section>
+
+  <!-- Highlights -->
+  <section class="grid md:grid-cols-4 gap-8 py-16 px-8 max-w-6xl mx-auto">
+    <div class="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition text-center">
+      <h2 class="text-xl font-semibold text-[#0C8346] mb-2">What Are Implants?</h2>
+      <p class="text-sm text-gray-600">Understand the full process step-by-step, from consult to smile.</p>
+    </div>
+    <div class="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition text-center">
+      <h2 class="text-xl font-semibold text-[#0C8346] mb-2">Compare Costs</h2>
+      <p class="text-sm text-gray-600">Transparent insights on what you’ll pay — and what you’ll get.</p>
+    </div>
+    <div class="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition text-center">
+      <h2 class="text-xl font-semibold text-[#0C8346] mb-2">Take a Course</h2>
+      <p class="text-sm text-gray-600">Quick 5-minute modules for patients to feel confident and informed.</p>
+    </div>
+    <div class="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition text-center">
+      <h2 class="text-xl font-semibold text-[#0C8346] mb-2">Find a Doctor</h2>
+      <p class="text-sm text-gray-600">Explore local providers who offer robotic precision and high ratings.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0C3B2E] text-white text-sm py-8 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2025 The New Smile Guide. All rights reserved.</p>
+      <div class="space-x-4 mt-4 md:mt-0">
+        <a href="#" class="hover:underline">Privacy</a>
+        <a href="#" class="hover:underline">Terms</a>
+        <a href="#" class="hover:underline">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
