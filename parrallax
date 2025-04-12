@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bowery Platform Architecture & Deployment Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for luxury look -->
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Base Styles --- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Spline Sans', 'Inter', Arial, sans-serif;
+      background: #110c16;
+      color: #e4daff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    a {
+      color: #ad50ff;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    a:hover { color: #ffe066; }
+
+    /* --- Parallax --- */
+    .parallax {
+      /* Parallax container for section */
+      height: 380px;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      z-index: 2;
+    }
+    .parallax-1 {
+      background-image: linear-gradient(120deg, #7036e6d0 10%, #300c3fcf 90%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80');
+    }
+    .parallax-2 {
+      background-image: linear-gradient(120deg, #231942c0 0%, #170c24af 100%), url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=1400&q=80');
+    }
+    .parallax-3 {
+      background-image: linear-gradient(120deg, #2c1049cc 0%, #1b1029aa 100%), url('https://images.unsplash.com/photo-1465101178521-c1a9136a87fe?auto=format&fit=crop&w=1400&q=80');
+    }
+    /* For mobile, disable parallax for performance */
+    @media (max-width: 900px) {
+      .parallax { background-attachment: scroll; }
+    }
+    /* --- Content Hero/Section --- */
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 22px;
+      position: relative;
+      z-index: 3;
+    }
+    .section-title {
+      font-size: 3.1rem;
+      font-weight: bold;
+      background: linear-gradient(90deg,#ad50ff 0%,#6848d4 60%,#e73cff 100%);
+      color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      letter-spacing: 2px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 40px #230642aa;
+    }
+    .tagline {
+      color: #a088e6;
+      font-size: 1.35rem;
+      max-width: 700px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+    /* --- Layered Cards --- */
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+    .layer-card {
+      border-radius: 20px;
+      background: linear-gradient(120deg, #2b1c3a 20%, #18131e 85%);
+      box-shadow: 0 0 42px 2px #15062a50, 0 6px 30px #3a1a5988;
+      padding: 44px 38px 36px 48px;
+      transition: box-shadow .35s, transform .25s, border-left-color .3s;
+      border-left: 9px solid #ad50ff;
+      position: relative;
+      backdrop-filter: blur(1.5px);
+    }
+    .layer-card:nth-child(2) { border-left: 9px solid #7036e6; background: linear-gradient(120deg,#231942 12%,#170c24 95%);}
+    .layer-card:nth-child(3) { border-left: 9px solid #e73cff; background: linear-gradient(120deg,#2c1049 10%,#1b1029 95%);}
+    .layer-card:hover {
+      box-shadow: 0 0 58px 7px #bb61ff70, 0 3px 40px #653bff40;
+      transform: translateY(-7px) scale(1.014);
+      border-left-color: #ffe066 !important;
+    }
+    .layer-title {
+      font-size: 2.15rem;
+      color: #e5d3ff;
+      margin-bottom: 10px;
+      letter-spacing:1px;
+      font-weight:600;
+    }
+    .layer-card p, .layer-card ul {
+      font-size: 1.19rem;
+      color: #cfc1fa;
+      line-height: 1.7;
+    }
+    .layer-card ul {
+      list-style: disc inside;
+      margin-top: 13px;
+      margin-bottom: 17px;
+      padding-left: 0;
+    }
+    .layer-key {
+      color: #ae82fc;
+      font-size: 1.04rem;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    /* --- Application & Service Features --- */
+    .app-feature, .service-feature {
+      margin: 28px 0 0 0;
+      padding-left: 13px;
+    }
+    .app-feature h3, .service-feature h3 {
+      color: #ad78ff;
+      font-size: 1.23rem;
+      margin: 0 0 3px 0;
+      cursor:pointer;
+      transition:color .16s;
+      font-weight:600;
+    }
+    .service-feature h3 { color: #ff6eff; }
+    .app-feature h3:hover, .service-feature h3:hover {
+      color: #ffe066;
+      letter-spacing: 1.1px;
+    }
+    /* --- Steps Section --- */
+    .flow-section {
+      max-width: 1120px;
+      margin: 70px auto 0 auto;
+      padding: 0 4vw 50px 4vw;
+    }
+    .flow-title {
+      font-size: 1.45rem;
+      color:#b9a8e2;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.7px;
+    }
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 1.06rem;
+      list-style: none;
+      padding: 0;
+      counter-reset: flowstep;
+    }
+    .flow-step {
+      flex: 1 1 220px;
+      border-radius: 13px;
+      background: linear-gradient(90deg, #3d1b6a 40%, #1b1224 100%);
+      border-left: 5px solid #ad50ff;
+      padding: 22px 20px 19px 26px;
+      margin-bottom: 10px;
+      counter-increment: flowstep;
+      position:relative;
+      min-width: 220px;
+      transition: box-shadow .22s, border-left-color .22s, transform .17s;
+      z-index: 2; /* Above parallax bg */
+    }
+    .flow-step:nth-child(2) { border-left: 5px solid #7036e6; background: linear-gradient(90deg,#371267, #18102a);}
+    .flow-step:nth-child(3) { border-left: 5px solid #e73cff; background: linear-gradient(90deg,#29074e, #161026);}
+    .flow-step:nth-child(4) { border-left: 5px solid #c196ef; background: linear-gradient(90deg,#2a0c3a, #0b050f);}
+    .flow-step:hover {
+      box-shadow: 0 0 32px 6px #372579a0, 0 2.5px 18px #702aff40;
+      border-left-color: #ffe066 !important;
+      transform: translateY(-5px) scale(1.013);
+    }
+    .flow-step span {
+      font-weight: bold;
+      display:block;
+      margin-bottom: 6px;
+      color: #ad50ff;
+    }
+    .flow-step:nth-child(2) span { color: #7036e6; }
+    .flow-step:nth-child(3) span { color: #e73cff; }
+    .flow-step:nth-child(4) span { color: #c196ef; }
+
+    .flow-note {
+      color: #b7b3bb;
+      font-size: 1.08rem;
+      margin-top: 12px;
+      margin-left: 3px;
+      display:block;
+    }
+
+    /* --- Accessibility & Footer --- */
+    .access-note {
+      background: rgba(16,24,34,.75);
+      color:#82ffd7;
+      font-size:1.05rem;
+      border-radius:12px;
+      padding: 17px 27px;
+      margin:60px auto 22px auto;
+      max-width: 940px;
+      letter-spacing:.01em;
+      line-height: 1.65;
+    }
+
+    /* --- Subtle Animations --- */
+    .fadeup {
+      opacity:0;
+      transform: translateY(40px);
+      animation: fadeUp 0.65s cubic-bezier(.44,.75,.18,1.2) forwards;
+    }
+    .delay1 {animation-delay:.19s;}
+    .delay2 {animation-delay:.35s;}
+    .delay3 {animation-delay:.54s;}
+    .delay4 {animation-delay:.68s;}
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none;}
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .section-title { font-size: 2.1rem; }
+      .section { padding: 55px 7vw;}
+      .layer-card { padding: 30px 15px 23px 16px;font-size: 1rem;}
+      .layer-title { font-size: 1.3rem;}
+      .layer-card ul, .layer-card p { font-size: 1.05rem;}
+      .flow-section { padding: 0 2vw 25px 2vw;}
+      .flow-steps { gap: 12px;}
+    }
+    @media (max-width: 700px) {
+      .parallax {height: 160px;}
+      .layer-stack, .flow-steps { gap: 16px;}
+      .layer-card { padding: 16px 7px 15px 10px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Parallax BG -->
+  <div class="parallax parallax-1" role="presentation"></div>
+  <section class="section" id="overview">
+    <h1 class="section-title fadeup">Bowery Platform Architecture</h1>
+    <p class="tagline fadeup delay1">
+      Elegant, scalable, visionary—Bowery’s AI platform delivers <b>engagement</b>,
+      <b>insight</b>, and <b>strategic value</b> for the dental and aesthetics industry. Our layered approach builds stability, user delight, and futureproof growth.
+    </p>
+  </section>
+
+  <section class="section" aria-labelledby="layers-title">
+    <h2 id="layers-title" style="position:absolute;left:-999rem;">Platform Layers</h2>
+    <div class="layer-stack">
+      <!-- LAYER 1 -->
+      <div class="layer-card fadeup delay2" tabindex="0" aria-label="Foundational Layer: Core AI Engine & Knowledge Base">
+        <div class="layer-title">I. Foundational Layer: Core AI Engine & Knowledge Base</div>
+        <p class="layer-key">Managed by Bowery’s <b>Core Technology Team</b></p>
+        <ul>
+          <li><b>Core AI &amp; Learning Model</b> — Ongoing training, algorithm refinement; turbocharges the entire platform.</li>
+          <li><b>Comprehensive Data Sets</b> — Dental, Aesthetics, Procedure-, Client-, Market-Data curated and updated by Bowery’s specialists.</li>
+          <li><b>Content Generation Engine</b> — Internal tool to input/optimize all structured content feeding the AI; ensures accuracy and timeliness.</li>
+        </ul>
+        <p class="layer-key">
+          <span style="color:#7c5ce6;font-weight:500;">Deployment:</span>
+          Prioritize robustness, scalability, and accuracy; no client exposure before internal sign-off.
+        </p>
+      </div>
+      <!-- LAYER 2 -->
+      <div class="layer-card fadeup delay3" tabindex="0" aria-label="Application Layer: Client-Facing Tools & Solutions">
+        <div class="layer-title">II. Application Layer: Client-Facing Tools & Solutions</div>
+        <p class="layer-key">Steered by Bowery’s <b>Client Success &amp; Application Teams</b></p>
+        <div class="app-feature">
+          <h3>Ali IQ (Patient Engagement Chatbot)</h3>
+          <p>Prospective patients interact via custom-branded chat, FAQ system, instant smile generator, and booking—all powered by the Core AI.</p>
+        </div>
+        <div class="app-feature">
+          <h3>Internal Staff Tool (Knowledge &amp; Training Hub)</h3>
+          <p>Web app/internal portal for staff onboarding, training, progress; integrates quizzes, metrics, and Core AI insights.</p>
+        </div>
+        <div class="app-feature">
+          <h3>NewSmileGuide</h3>
+          <p>For patients &amp; professionals; education and engagement, fully tailored per client/market, standalone or integrated as needed.</p>
+        </div>
+        <span class="layer-key">
+          <i>Customization, onboarding, rigorous feedback, and upgrade loop = client delight.</i>
+        </span>
+      </div>
+      <!-- LAYER 3 -->
+      <div class="layer-card fadeup delay4" tabindex="0" aria-label="Services Layer: Strategic & High-Value Offerings">
+        <div class="layer-title">III. Services Layer: Strategic &amp; High-Value Offerings</div>
+        <p class="layer-key">
+          Orchestrated by <b>Advanced Services Team</b>: Analysts, Strategists, Researchers, Sales Intelligence
+        </p>
+        <div class="service-feature">
+          <h3>Sales Intelligence &amp; Enablement</h3>
+          <ul>
+            <li>Prospect &amp; competitor analytics</li>
+            <li>Market opportunity mapping</li>
+            <li>Actionable sales training &amp; impact reports</li>
+          </ul>
+        </div>
+        <div class="service-feature">
+          <h3>Strategic Content &amp; Marketing</h3>
+          <ul>
+            <li>Blog/releases/social PR automation</li>
+            <li>Campaign design and multi-channel execution</li>
+            <li>AI-driven content ideation and scheduling</li>
+          </ul>
+        </div>
+        <div class="service-feature">
+          <h3>Advanced Analytics &amp; Insights</h3>
+          <ul>
+            <li>Deep linguistic/behavioral analytics (Forensics Module)</li>
+            <li>Interactive dashboards and strategic trend surfacing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX SPLASH -->
+  <div class="parallax parallax-2" role="presentation"></div>
+
+  <section class="flow-section" aria-labelledby="flow-title">
+    <div class="flow-title" id="flow-title">Organizational &amp; Deployment Flow</div>
+    <ol class="flow-steps">
+      <li class="flow-step fadeup" tabindex="0">
+        <span>Step 1: Foundation Build</span>
+        Establish robust Core AI, data infrastructure, and scalable content generation.
+      </li>
+      <li class="flow-step fadeup delay2" tabindex="0">
+        <span>Step 2: Application Deployment</span>
+        Deploy &amp; tailor Ali IQ, staff tools, and NewSmileGuide for each client.
+      </li>
+      <li class="flow-step fadeup delay3" tabindex="0">
+        <span>Step 3: Data Feedback &amp; Iteration</span>
+        Aggregate and anonymize usage, refine AI/content based on real feedback.
+      </li>
+      <li class="flow-step fadeup delay4" tabindex="0">
+        <span>Step 4: Strategic Service Delivery</span>
+        Deliver analytics, content, and market intelligence—driving measurable results.
+      </li>
+    </ol>
+    <span class="flow-note">Continuous Iteration: <i>Automated feedback loop ensures constant enhancement of AI and applications.</i></span>
+  </section>
+
+  <div class="parallax parallax-3" role="presentation"></div>
+
+  <section>
+    <div class="access-note fadeup delay2">
+      <b>Accessibility:</b> This layout and UI follow the latest <a href="https://wave.webaim.org/" target="_blank">WebAIM best practices</a> to ensure broad inclusivity.<br>
+      <small>References: <a href="https://www.w3schools.com/howto/tryhow_css_parallax_demo.htm" target="_blank">w3schools.com</a>, <a href="https://keithclark.co.uk/articles/pure-css-parallax-websites/" target="_blank">keithclark.co.uk</a></small>
+    </div>
+  </section>
+
+  <footer style="text-align:center; color:#6247cd; font-size: 1.01rem; margin: 40px 0 28px 0;">
+    <span>Bowery Creative Agency &ndash; Platform Architecture &copy; 2024</span>
+  </footer>
+
+  <!-- SUBTLE JS for animating fade-ups on scroll -->
+  <script>
+    // Animate fade-up for all .fadeup on scroll
+    function fadeUpOnScroll () {
+      let els = document.querySelectorAll('.fadeup');
+      let windowBottom = window.innerHeight + window.scrollY;
+      els.forEach(function(el) {
+        if (el.getBoundingClientRect().top + window.scrollY < windowBottom - 80) {
+          el.style.animationPlayState = "running";
+        }
+      });
+    }
+    window.addEventListener('scroll', fadeUpOnScroll);
+    window.addEventListener('DOMContentLoaded', fadeUpOnScroll);
+  </script>
+</body>
+</html>
